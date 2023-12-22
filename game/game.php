@@ -1,22 +1,26 @@
 <?php
 include 'player.php';
-class Game {
+class Game
+{
     private Player $playerUser;
     private Player $playerBot;
 
-    public function __construct(Player $playerUser, Player $playerBot) {
+    public function __construct(Player $playerUser, Player $playerBot)
+    {
         $this->playerUser = $playerUser;
         $this->playerBot = $playerBot;
     }
 
-    private function getMove(Player $player): int {
+    private function getMove(Player $player): int
+    {
         if ($player === $this->playerUser) {
-            return (int)readline();
+            return (int) readline();
         }
         return rand(1, 2);
     }
 
-    public function turn(Player $player) {
+    public function turn(Player $player)
+    {
         $turn = true;
         $stones = [];
         while ($turn) {
@@ -55,8 +59,7 @@ class Game {
         foreach ($stones as $s) {
             if (endsWith($s->Name, "самородок")) {
                 $player->addStoneToTable($s);
-            }
-            else {
+            } else {
                 $player->addStoneToBag($s);
             }
         }
@@ -64,7 +67,8 @@ class Game {
         echo "------------------------\nСтатистика.\n{$this->playerUser->Name}: {$this->playerUser->getGoldCount()}\n{$this->playerBot->Name}:{$this->playerBot->getGoldCount()}\n---------------------------\n";
     }
 
-    private function checkTable(Player $player, array $stones, Stone $pickedStone): bool {
+    private function checkTable(Player $player, array $stones, Stone $pickedStone): bool
+    {
         $bulyzhnikCount = 0;
         foreach ($stones as $stone) {
             if ($stone->Name === $pickedStone->Name && endsWith($stone->Name, "булыжник")) {
@@ -82,14 +86,16 @@ class Game {
         return true;
     }
 
-    private function checkWin(): bool {
+    private function checkWin(): bool
+    {
         return $this->playerUser->getGoldCount() < 5 && $this->playerBot->getGoldCount() < 5;
     }
 
-    public function start() {
+    public function start()
+    {
         while ($this->checkWin()) {
             $this->turn($this->playerUser);
-            if ($this->checkWin()) { 
+            if ($this->checkWin()) {
                 break;
             }
             $this->turn($this->playerBot);
@@ -98,7 +104,8 @@ class Game {
         echo "Конец игры. Очки.\n{$this->playerUser->Name}: {$this->playerUser->getGoldCount()}\n{$this->playerBot->Name}:{$this->playerBot->getGoldCount()}\n";
     }
 
-    private function emeraldGame(Player $player, array $stones) {
+    private function emeraldGame(Player $player, array $stones)
+    {
         $stoneF = $player->pickStone();
         $stones[] = $stoneF;
         $stoneS = $player->pickStone();
@@ -122,8 +129,9 @@ class Game {
         }
     }
 
-    private function rubyByOrder(Player $player, array $stones, Stone $stone) {
-        if (endsWith($stone->Name,"самородок")) {
+    private function rubyByOrder(Player $player, array $stones, Stone $stone)
+    {
+        if (endsWith($stone->Name, "самородок")) {
             echo "ЗОЛОТО! {$player->Name} достал золотой самородок. Игра с рубином закончена\n";
             $key = array_search($stone, $stones);
             if ($key !== false) {
@@ -135,7 +143,8 @@ class Game {
         return false;
     }
 
-    private function rubyGame() {
+    private function rubyGame()
+    {
         $stonesUser = [];
         $stonesBot = [];
         while (true) {
