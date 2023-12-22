@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace PizzaStore;
 
@@ -11,22 +11,24 @@ use PizzaStore\MeatPizza;
 use PizzaStore\FourCheeses;
 
 
-class DodoPizza extends PizzaStore{
-    public function orderPizza(string $type){
+class DodoPizza extends PizzaStore
+{
+    public function orderPizza(string $type)
+    {
         $pizza = $this->createPizza($type);
     }
 
-    protected function createPizza(string $type) : ?Pizza
+    protected function createPizza(string $type): ?Pizza
     {
-       if ($type != null){
-        switch ($type) {
-            case 'meat':
-                return new MeatPizza;
-            case 'four_cheeses':
-                return new FourCheeses;
+        if ($type != null) {
+            switch ($type) {
+                case 'meat':
+                    return new MeatPizza;
+                case 'four_cheeses':
+                    return new FourCheeses;
             }
-        echo 'Товара не существует.';
-        return null;
+            echo 'Товара не существует.';
+            return null;
         }
     }
 }

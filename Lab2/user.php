@@ -1,6 +1,7 @@
-<?php 
+<?php
 
-class User {
+class User
+{
     public readonly string $userName;
     public readonly string $password;
     public readonly \DateTime $birthday;

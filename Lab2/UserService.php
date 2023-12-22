@@ -1,30 +1,36 @@
-<?php 
+<?php
 
 
-enum SortType{
+enum SortType
+{
     case up;
     case down;
 }
 
-class UserService{
-    public static function sortByUsername(array $usersList, SortType $sortType){
-        if ($sortType == SortType::up){
+class UserService
+{
+    public static function sortByUsername(array $usersList, SortType $sortType)
+    {
+        if ($sortType == SortType::up) {
             usort($usersList, "self::sort_by_username");
             return $usersList;
         } else if ($sortType == SortType::down) {
             usort($usersList, "self::sort_by_username_down");
             return $usersList;
-        } else return null;
+        } else
+            return null;
     }
 
-    public static function sortByBirthday(array $usersList, SortType $sortType){
+    public static function sortByBirthday(array $usersList, SortType $sortType)
+    {
         if ($sortType == SortType::up) {
             usort($usersList, "self::sort_by_birthday");
             return $usersList;
         } else if ($sortType == SortType::down) {
             usort($usersList, "self::sort_by_birthday_down");
             return $usersList;
-        } else return null;
+        } else
+            return null;
     }
 
 

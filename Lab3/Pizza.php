@@ -2,23 +2,26 @@
 
 namespace PizzaStore;
 
-abstract class Pizza{
+abstract class Pizza
+{
     protected string $name = '';
     protected string $sauce = '';
     protected array $toppings = [];
 
-    public function __construct(){
+    public function __construct()
+    {
         $this->prepare();
         $this->cut();
     }
 
     abstract public function prepare();
 
-    public function cut(){
+    public function cut()
+    {
         echo 'Данную пиццу нарезают по диагонали' . "\n";
     }
 
-    public function getName() : string
+    public function getName(): string
     {
         return $this->name;
     }
@@ -27,7 +30,7 @@ abstract class Pizza{
         $this->name = $name;
     }
 
-    public function getSauce() : string
+    public function getSauce(): string
     {
         return $this->sauce;
     }
@@ -36,7 +39,7 @@ abstract class Pizza{
         $this->sauce = $sauce;
     }
 
-    public function getToppings() : array
+    public function getToppings(): array
     {
         return $this->toppings;
     }

@@ -1,11 +1,14 @@
 <?php
 
 namespace PizzaStore;
-require_once __DIR__ ."..\\..\\Pizza.php";
+
+require_once __DIR__ . "..\\..\\Pizza.php";
 use PizzaStore\Pizza;
 
-class MeatPizza extends Pizza{
-    public function __construct(){
+class MeatPizza extends Pizza
+{
+    public function __construct()
+    {
         $this->setName("Мясная пицца");
         $this->setSauce("Сырный соус");
         $this->setToppings(["Бекон", "Сыр моцарелла"]);
@@ -14,8 +17,8 @@ class MeatPizza extends Pizza{
 
     public function prepare()
     {
-        echo "Началась готовка пиццы ". $this->getName() ."\n";
-        echo "Добавлен соус: ". $this->getSauce(). "\n";
+        echo "Началась готовка пиццы " . $this->getName() . "\n";
+        echo "Добавлен соус: " . $this->getSauce() . "\n";
         echo "Добавлены топпинги: " . implode('; ', $this->getToppings()) . "\n";
     }
 }
